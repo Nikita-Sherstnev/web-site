@@ -5,10 +5,10 @@ include_once 'functions.php';
 if ($_REQUEST[session_name()] and $_REQUEST['username']) {
     session_start();
 } else {
-    printPageTitle("Личный кабинет");
-    echo "Вам недоступен личный кабинет<br>";
-    echo "<a href='entrance.php'>Войти</a><br>";
-    echo "<a href='index.php'>Зарегистрироваться</a>";
+    printPageTitle("Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚");
+    echo "Р’Р°Рј РЅРµРґРѕСЃС‚СѓРїРµРЅ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚<br>";
+    echo "<a href='entrance.php'>Р’РѕР№С‚Рё</a><br>";
+    echo "<a href='index.php'>Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</a>";
     exit();
 }
 
@@ -24,7 +24,7 @@ if ($_REQUEST['submit']) {
         $birthday, $email, $_REQUEST['username']);
 
     if ($update->error) {
-        echo "Ошибка: " . $update->error;
+        echo "РћС€РёР±РєР°: " . $update->error;
     }
     $update->close();
 }

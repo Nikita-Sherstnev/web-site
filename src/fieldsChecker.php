@@ -15,7 +15,7 @@ function checkField($str, $fieldName, $regExp, $description)
 function validateField($str, $fieldName)
 {
     if (empty($str)) {
-        echo("Введите $fieldName!<br>");
+        echo("Р’РІРµРґРёС‚Рµ $fieldName!<br>");
         return false;
     }
     return true;
@@ -23,7 +23,7 @@ function validateField($str, $fieldName)
 
 function checkSpecialRole($name)
 {
-    if ($name == "Админ") {
+    if ($name == "РђРґРјРёРЅ") {
         header('Location: adminpage.php');
         exit();
     }

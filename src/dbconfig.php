@@ -1,12 +1,12 @@
 <?php
-$server = "localhost";
+$server = "db";
 $dbusername = "root";
-$password = "";
+$password = "1234";
 $database = "book";
 $mysqli = new mysqli($server, $dbusername, $password, $database);
 
 if (mysqli_connect_errno()) {
-    echo "Îøèáêà ïîäêëþ÷åíèÿ ê ÁÄ. Îïèñàíèå îøèáêè: " . mysqli_connect_error();
+    echo "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº Ð‘Ð”. ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸: " . mysqli_connect_error();
     exit();
 }
 

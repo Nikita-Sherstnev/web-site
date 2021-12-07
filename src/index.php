@@ -3,7 +3,7 @@ require_once 'reg.php';
 include_once "dbconfig.php";
 require_once 'fieldsChecker.php';
 
-if ($_REQUEST['submit']) {
+if (isset($_REQUEST['submit'])) {
     $username = $_REQUEST['username'];
     $password = $_REQUEST['password'];
     $password2 = $_REQUEST['password2'];
@@ -14,25 +14,25 @@ if ($_REQUEST['submit']) {
     $dataCheck = true;
 
     $dataCheck &= checkField($username,
-        "имя",
+        "РёРјСЏ",
         "#\b[a-z0-9]+\b#i",
-        "Логин может состоять только из латинских букв и цифр.");
+        "Р›РѕРіРёРЅ РјРѕР¶РµС‚ СЃРѕСЃС‚РѕСЏС‚СЊ С‚РѕР»СЊРєРѕ РёР· Р»Р°С‚РёРЅСЃРєРёС… Р±СѓРєРІ Рё С†РёС„СЂ.");
 
     $dataCheck &= checkField($password,
-        "пароль",
+        "РїР°СЂРѕР»СЊ",
         "#\b[a-z0-9-_]{6,20}\b\w?#i",
-        "Пароль не менее 6 и не более 20 символов. Может содержать символы английского алфавита и цифры."
+        "РџР°СЂРѕР»СЊ РЅРµ РјРµРЅРµРµ 6 Рё РЅРµ Р±РѕР»РµРµ 20 СЃРёРјРІРѕР»РѕРІ. РњРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ СЃРёРјРІРѕР»С‹ Р°РЅРіР»РёР№СЃРєРѕРіРѕ Р°Р»С„Р°РІРёС‚Р° Рё С†РёС„СЂС‹."
     );
 
     if ($password !== $password2) {
-        echo("Введите пароль повторно.<br>");
+        echo("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ РїРѕРІС‚РѕСЂРЅРѕ.<br>");
         $dataCheck = false;
     }
 
     $dataCheck &= checkField($email,
         "e-mail",
         "#\b[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}\b#i",
-        "Email введен некорректно."
+        "Email РІРІРµРґРµРЅ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ."
     );
 
     $stmt = $mysqli->prepare("SELECT COUNT(*) FROM person WHERE login=?");
@@ -42,7 +42,7 @@ if ($_REQUEST['submit']) {
     $stmt->fetch();
     if ($count > 0) {
         $dataCheck = false;
-        echo "<br>Пользователь с таким логином уже существует!";
+        echo "<br>РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј Р»РѕРіРёРЅРѕРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!";
     }
     $stmt->close();
 
@@ -53,7 +53,7 @@ if ($_REQUEST['submit']) {
     $stmt->fetch();
     if ($count > 0) {
         $dataCheck = false;
-        echo "<br>Пользователь с таким email уже существует!";
+        echo "<br>РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј email СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!";
     }
     $stmt->close();
 
@@ -66,9 +66,9 @@ if ($_REQUEST['submit']) {
                                             VALUES($username, $password, $email)");
 
         if ($insert_row) {
-            echo "<br>Вы успешно зарегистрировались!";
+            echo "<br>Р’С‹ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»РёСЃСЊ!";
         } else {
-            die('Ошибка: (' . $mysqli->errno . ') ' . $mysqli->error);
+            die('РћС€РёР±РєР°: (' . $mysqli->errno . ') ' . $mysqli->error);
         }
     }
 

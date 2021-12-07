@@ -2,14 +2,14 @@
 include_once "dbconfig.php";
 require_once "fieldsChecker.php";
 
-if ($_REQUEST['submit']) {
-    $username = $_REQUEST['username'];
-    $password = $_REQUEST['password'];
+if (isset($_REQUEST['submit'])) {
+    $username = isset($_REQUEST['username']);
+    $password = isset($_REQUEST['password']);
 
     $dataCheck = true;
 
-    $dataCheck &= validateField($username, "логин");
-    $dataCheck &= validateField($password, "пароль");
+    $dataCheck &= validateField($username, "Р»РѕРіРёРЅ");
+    $dataCheck &= validateField($password, "РїР°СЂРѕР»СЊ");
 
     if ($dataCheck) {
         $select_row = $mysqli->prepare("SELECT COUNT(*) FROM person WHERE login=? AND password=?")
@@ -31,7 +31,7 @@ if ($_REQUEST['submit']) {
 
             header('Location: lk.php');
         } else {
-            echo "<br>Неверный логин или пароль!";
+            echo "<br>РќРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!";
         }
     }
 }
