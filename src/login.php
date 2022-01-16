@@ -3,8 +3,8 @@ include_once "dbconfig.php";
 require_once "fieldsChecker.php";
 
 if (isset($_REQUEST['submit'])) {
-    $username = isset($_REQUEST['username']);
-    $password = isset($_REQUEST['password']);
+    $username = $_REQUEST['username'];
+    $password = $_REQUEST['password'];
 
     $dataCheck = true;
 
@@ -25,7 +25,7 @@ if (isset($_REQUEST['submit'])) {
             session_start();
 
             $_SESSION["username"] = $username;
-            setcookie("username", $username, time()+600);
+            setcookie("username", $username, time() + 600);
 
             checkSpecialRole($username);
 
